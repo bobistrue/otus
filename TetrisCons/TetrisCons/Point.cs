@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TetrisCons
 {
-    class Point
+    public class Point
     {
         public int x;
         public int y;
@@ -15,11 +15,6 @@ namespace TetrisCons
             this.x = x;
             this.y = y;
             this.f = f;
-        }
-
-        public Point()
-        {
-
         }
 
         public void Draw()
