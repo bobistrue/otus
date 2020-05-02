@@ -12,8 +12,35 @@ namespace TetrisCons
                 point.Draw();
         }
 
-        //public abstract void Move();
+        public void Move(Directions dir)
+        {
+            switch (dir)
+            {
+                case Directions.Left:
+                    foreach(var point in coords)
+                    {
+                        point.x -= 1;
+                    }
+                    break;
+                case Directions.Right:
+                    foreach (var point in coords)
+                    {
+                        point.x += 1;
+                    }
+                    break;
+                case Directions.Down:
+                    foreach (var point in coords)
+                    {
+                        point.y += 1;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
         //public abstract void TurnRight();
+
         //public abstract void TurnLeft();
     }
 }

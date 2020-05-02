@@ -14,7 +14,12 @@ namespace TetrisCons
             figs[0] = new Square(1, 1, 'x');
             figs[1] = new Stick(4, 1, 'o');
 
-            foreach (var fig in figs) fig.Draw();
+            foreach (var fig in figs)
+            {
+                Console.Clear();
+                fig.Draw();
+                fig.Move(Directions.Right);
+            }
 
 
             Console.ReadLine();
