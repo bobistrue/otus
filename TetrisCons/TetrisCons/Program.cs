@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace TetrisCons
 {
@@ -12,13 +13,15 @@ namespace TetrisCons
 
             Figure[] figs = new Figure[2];
             figs[0] = new Square(1, 1, 'x');
-            figs[1] = new Stick(4, 1, 'o');
 
             foreach (var fig in figs)
             {
-                Console.Clear();
                 fig.Draw();
-                fig.Move(Directions.Right);
+
+                Thread.Sleep(1000); 
+                fig.Hide();
+                fig.Move(Directions.RIGHT);
+                fig.Draw();
             }
 
 

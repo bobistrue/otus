@@ -4,10 +4,10 @@ using System.Text;
 
 namespace TetrisCons
 {
-    enum Directions
+    public enum Directions
     {
-        Left, 
-        Right, 
-        Down
+        LEFT, 
+        RIGHT, 
+        DOWN
     }
 }

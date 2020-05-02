@@ -14,28 +14,15 @@ namespace TetrisCons
 
         public void Move(Directions dir)
         {
-            switch (dir)
+            foreach (Point point in coords)
+                point.Move(dir);
+        }
+
+        internal void Hide()
+        {
+            foreach(var point in coords)
             {
-                case Directions.Left:
-                    foreach(var point in coords)
-                    {
-                        point.x -= 1;
-                    }
-                    break;
-                case Directions.Right:
-                    foreach (var point in coords)
-                    {
-                        point.x += 1;
-                    }
-                    break;
-                case Directions.Down:
-                    foreach (var point in coords)
-                    {
-                        point.y += 1;
-                    }
-                    break;
-                default:
-                    break;
+                point.Hide();
             }
         }
 
