@@ -10,19 +10,15 @@ namespace TetrisCons
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
-            int x1 = 0;
-            int y1 = 1;
-            char c1 = '*';
+            Point p1 = new Point(1,2,'+');
+            p1.Draw();
 
-            Draw(x1, y1, c1);
+            Point p2 = new Point(2, 4, '-');
+            p2.Draw();
 
             Console.ReadLine();
         }
 
-        static void Draw(int x, int y, char c)
-        {
-            Console.SetCursorPosition(x, y);
-            Console.Write(c);
-        }
+        
     }
 }
