@@ -16,6 +16,9 @@ namespace TetrisCons
             Point p2 = new Point(2, 4, '-');
             p2.Draw();
 
+            Point p3 = new Point() { x = 1, y = 4, f = '*' };
+            p3.Draw();
+
             Console.ReadLine();
         }
 
