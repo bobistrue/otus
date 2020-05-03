@@ -11,16 +11,31 @@ namespace TetrisCons
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
-            Figure[] figs = new Figure[2];
-            figs[0] = new Square(1, 1, 'x');
+            Figure[] figs = new Figure[1];
+            figs[0] = new Stick(1, 1, 'x');
 
             foreach (var fig in figs)
             {
                 fig.Draw();
 
-                Thread.Sleep(1000); 
+                Thread.Sleep(1000);
                 fig.Hide();
                 fig.Move(Directions.RIGHT);
+                fig.Draw();
+
+                Thread.Sleep(1000);
+                fig.Hide();
+                fig.Rotate(Directions.RIGHT);
+                fig.Draw();
+
+                Thread.Sleep(1000);
+                fig.Hide();
+                fig.Move(Directions.RIGHT);
+                fig.Draw();
+
+                Thread.Sleep(1000);
+                fig.Hide();
+                fig.Rotate(Directions.RIGHT);
                 fig.Draw();
             }
 

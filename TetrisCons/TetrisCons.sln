@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TetrisCons", "TetrisCons\TetrisCons.csproj", "{8B43AF05-61C4-41BF-8C6A-790EAA31B8D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "Collections\Collections.csproj", "{2288FE75-88F7-4F28-B851-E39D438538F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections", "Collections\Collections.csproj", "{2288FE75-88F7-4F28-B851-E39D438538F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enums", "Enums\Enums.csproj", "{D6F84A44-2E5C-4EC3-8B9D-9D47DFE30C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enums", "Enums\Enums.csproj", "{D6F84A44-2E5C-4EC3-8B9D-9D47DFE30C97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polymorph", "Polymorph\Polymorph.csproj", "{C787375A-D471-408C-8E1C-7B751EE67EB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D6F84A44-2E5C-4EC3-8B9D-9D47DFE30C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F84A44-2E5C-4EC3-8B9D-9D47DFE30C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F84A44-2E5C-4EC3-8B9D-9D47DFE30C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C787375A-D471-408C-8E1C-7B751EE67EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C787375A-D471-408C-8E1C-7B751EE67EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C787375A-D471-408C-8E1C-7B751EE67EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C787375A-D471-408C-8E1C-7B751EE67EB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

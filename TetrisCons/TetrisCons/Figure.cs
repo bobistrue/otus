@@ -26,8 +26,6 @@ namespace TetrisCons
             }
         }
 
-        //public abstract void TurnRight();
-
-        //public abstract void TurnLeft();
+        public abstract void Rotate(Directions dir);
     }
 }

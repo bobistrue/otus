@@ -15,5 +15,7 @@ namespace TetrisCons
             coords[3] = new Point(x+1, y+1, c);
         }
 
+        public override void Rotate(Directions dir) { }
+
     }
 }
