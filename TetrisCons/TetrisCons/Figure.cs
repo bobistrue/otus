@@ -75,5 +75,9 @@ namespace TetrisCons
 
         public abstract void Rotate(Point[] clone);
 
+        internal bool IsOnTop()
+        {
+            return Points[0].Y == 0;
+        }
     }
 }

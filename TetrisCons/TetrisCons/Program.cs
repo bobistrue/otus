@@ -6,8 +6,12 @@ namespace TetrisCons
 {
     class Program
     {
+        static int TIMER_INTERVAL = 500;
+        static System.Timers.Timer aTimer;
+        static Object _lockObject = new object();
+
+        static Figure currentFigure;
         static FigureGenerator generator;
-        private static System.Timers.Timer aTimer;
 
         static void Main(string[] args)
         {
@@ -16,7 +20,7 @@ namespace TetrisCons
             Console.SetBufferSize(GameField.Width, GameField.Height);
 
             generator = new FigureGenerator(GameField.Width / 2, 0, Drawer.DEFAULT_SYMBOL);
-            Figure currentFigure = generator.GetNewFigure();
+            currentFigure = generator.GetNewFigure();
 
             SetTimer();
 
@@ -25,15 +29,17 @@ namespace TetrisCons
                 if (Console.KeyAvailable)
                 {
                     var key = Console.ReadKey();
+                    Monitor.Enter(_lockObject);
                     var result = HandleKey(currentFigure, key);
                     ProcessResult(result, ref currentFigure);
+                    Monitor.Exit(_lockObject);
                 }
             }
         }
 
         private static void SetTimer()
         {
-            aTimer = new System.Timers.Timer(2000);
+            aTimer = new System.Timers.Timer(TIMER_INTERVAL);
             aTimer.Elapsed += OnTimedEvent;
             aTimer.AutoReset = true;
             aTimer.Enabled = true;
@@ -41,7 +47,10 @@ namespace TetrisCons
 
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            throw new NotImplementedException();
+            Monitor.Enter(_lockObject);
+            var result = currentFigure.TryMove(Directions.DOWN);
+            ProcessResult(result, ref currentFigure);
+            Monitor.Exit(_lockObject);
         }
 
         private static bool ProcessResult(Result result, ref Figure currentFigure)
@@ -50,10 +59,26 @@ namespace TetrisCons
             {
                 GameField.AddFigure(currentFigure);
                 GameField.TryDeleteLines();
-                currentFigure = generator.GetNewFigure();
-                return true;
+                if (currentFigure.IsOnTop())
+                {
+                    WriteGameOver();
+                    aTimer.Elapsed -= OnTimedEvent;
+                    return true;
+                }
+                else
+                {
+                    currentFigure = generator.GetNewFigure();
+                    return false;
+                }
             }
-            return false;
+            else
+                return false;
+        }
+
+        private static void WriteGameOver()
+        {
+            Console.SetCursorPosition(GameField.Width / 2 - 8, GameField.Height / 2 - 2);
+            Console.WriteLine("G A M E   O V E R");
         }
 
         private static Result HandleKey(Figure currentFigure, ConsoleKeyInfo key)
@@ -71,17 +96,6 @@ namespace TetrisCons
             }
             return Result.SUCCESS;
         }
-
-        //static void FigureFall(out Figure fig, FigureGenerator generator)
-        //{
-        //    fig = generator.GetNewFigure();
-        //    fig.Draw();
-
-        //    for (int i = 0; i < 15; i++)
-        //    {
-        //    }
-        //}
-
         
     }
 }
