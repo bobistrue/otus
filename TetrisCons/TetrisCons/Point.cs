@@ -28,13 +28,13 @@ namespace TetrisCons
             switch (dir)
             {
                 case Directions.LEFT:
-                        x -= 1;
+                    x -= 1;
                     break;
                 case Directions.RIGHT:
-                        x += 1;
+                    x += 1;
                     break;
                 case Directions.DOWN:
-                        y += 1;
+                    y += 1;
                     break;
             }
         }

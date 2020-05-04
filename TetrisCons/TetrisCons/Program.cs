@@ -11,37 +11,47 @@ namespace TetrisCons
             Console.SetWindowSize(40, 30);
             Console.SetBufferSize(40, 30);
 
-            Figure[] figs = new Figure[1];
-            figs[0] = new Stick(1, 1, 'x');
+            FigureGenerator generator = new FigureGenerator(5, 5, 'o');
 
-            foreach (var fig in figs)
+            Figure currentFigure = generator.GetNewFigure();
+
+            while (true)
             {
-                fig.Draw();
-
-                Thread.Sleep(1000);
-                fig.Hide();
-                fig.Move(Directions.RIGHT);
-                fig.Draw();
-
-                Thread.Sleep(1000);
-                fig.Hide();
-                fig.Rotate(Directions.RIGHT);
-                fig.Draw();
-
-                Thread.Sleep(1000);
-                fig.Hide();
-                fig.Move(Directions.RIGHT);
-                fig.Draw();
-
-                Thread.Sleep(1000);
-                fig.Hide();
-                fig.Rotate(Directions.RIGHT);
-                fig.Draw();
+                if (Console.KeyAvailable)
+                {
+                    var key = Console.ReadKey();
+                    HandleKey(currentFigure, key);
+                }
             }
-
 
             Console.ReadLine();
         }
+
+        private static void HandleKey(Figure currentFigure, ConsoleKeyInfo key)
+        {
+            switch (key.Key)
+            {
+                case ConsoleKey.LeftArrow:
+                    currentFigure.Move(Directions.LEFT);
+                    break;
+                case ConsoleKey.RightArrow:
+                    currentFigure.Move(Directions.RIGHT);
+                    break;
+                case ConsoleKey.DownArrow:
+                    currentFigure.Move(Directions.DOWN);
+                    break;
+            }
+        }
+
+        //static void FigureFall(out Figure fig, FigureGenerator generator)
+        //{
+        //    fig = generator.GetNewFigure();
+        //    fig.Draw();
+
+        //    for (int i = 0; i < 15; i++)
+        //    {
+        //    }
+        //}
 
         
     }
