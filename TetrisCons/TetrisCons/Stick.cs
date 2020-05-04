@@ -6,46 +6,41 @@ namespace TetrisCons
 {
     public class Stick : Figure
     {
+        const int LENGTH = 4;
         public Stick(int x, int y, char sym)
         {
-            coords = new Point[4];
-            coords[0] = new Point(x, y, sym);
-            coords[1] = new Point(x, y+1, sym);
-            coords[2] = new Point(x, y+2, sym);
-            coords[3] = new Point(x, y+3, sym);
+            points = new Point[4];
+            points[0] = new Point(x, y, sym);
+            points[1] = new Point(x, y+1, sym);
+            points[2] = new Point(x, y+2, sym);
+            points[3] = new Point(x, y+3, sym);
             Draw();
         }
 
-        public override void Rotate(Directions dir)
+        public override void Rotate(Point[] clone)
         {
-            if (coords[1].x == coords[0].x)
-            {
-                RotateHorizontal();
-            }
+            if (clone[1].x == clone[0].x)
+                RotateHorizontal(clone);
             else
+                RotateVertical(clone);
+        }
+
+        private void RotateVertical(Point[] clone)
+        {
+            for (int i = 0; i < clone.Length; i++)
             {
-                RotateVertical();
+                clone[i].x = clone[0].x;
+                clone[i].y += i;
             }
         }
 
-        private void RotateVertical()
+        private void RotateHorizontal(Point[] clone)
         {
-            coords[1].x -= 1;
-            coords[1].y += 1;
-            coords[2].x -= 2;
-            coords[2].y += 2;
-            coords[3].x -= 3;
-            coords[3].y += 3;
-        }
-
-        private void RotateHorizontal()
-        {
-            coords[1].x += 1;
-            coords[1].y -= 1;
-            coords[2].x += 2;
-            coords[2].y -= 2;
-            coords[3].x += 3;
-            coords[3].y -= 3;
+            for (int i = 0; i < clone.Length; i++)
+            {
+                clone[i].y = clone[0].y;
+                clone[i].x += i;
+            }
         }
     }
 }

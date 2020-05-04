@@ -8,15 +8,15 @@ namespace TetrisCons
     {
         public Square(int x, int y, char c)
         {
-            coords = new Point[4];
-            coords[0] = new Point(x, y, c);
-            coords[1] = new Point(x+1, y, c);
-            coords[2] = new Point(x, y+1, c);
-            coords[3] = new Point(x+1, y+1, c);
+            points = new Point[4];
+            points[0] = new Point(x, y, c);
+            points[1] = new Point(x+1, y, c);
+            points[2] = new Point(x, y+1, c);
+            points[3] = new Point(x+1, y+1, c);
             Draw();
         }
 
-        public override void Rotate(Directions dir) { }
+        public override void Rotate(Point[] clone) { }
 
     }
 }

@@ -17,10 +17,18 @@ namespace TetrisCons
             this.f = f;
         }
 
+        public Point(Point p)
+        {
+            x = p.x;
+            y = p.y;
+            f = p.f;
+        }
+
         public void Draw()
         {
             Console.SetCursorPosition(this.x, this.y);
             Console.Write(this.f);
+            Console.SetCursorPosition(0, 0);
         }
 
         public void Move(Directions dir)
@@ -43,6 +51,11 @@ namespace TetrisCons
         {
             Console.SetCursorPosition(this.x, this.y);
             Console.Write(" ");
+        }
+
+        public Point GetClone()
+        {
+            return new Point(this.x, this.y, this.f);
         }
     }
 }
