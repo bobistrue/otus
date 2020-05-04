@@ -7,12 +7,8 @@ namespace TetrisCons
     {
         static void Main(string[] args)
         {
-            Console.Title = "Tetris";
-            Console.SetWindowSize(40, 30);
-            Console.SetBufferSize(40, 30);
 
             FigureGenerator generator = new FigureGenerator(5, 5, 'o');
-
             Figure currentFigure = generator.GetNewFigure();
 
             while (true)

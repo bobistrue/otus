@@ -42,7 +42,7 @@ namespace TetrisCons
         private bool VerifyPosition(Point[] clone)
         {
             foreach (var p in clone)
-                if (p.x < 0 || p.y < 0 || p.x >= 40 || p.y >= 30) return false;
+                if (p.X < 0 || p.Y < 0 || p.X >= GameField.Width || p.Y >= GameField.Height) return false;
             return true;
         }
 

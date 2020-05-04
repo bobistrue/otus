@@ -6,28 +6,28 @@ namespace TetrisCons
 {
     public class Point
     {
-        public int x;
-        public int y;
-        public char f;
+        public int X;
+        public int Y;
+        public char C;
 
-        public Point(int x, int y, char f)
+        public Point(int x, int y, char c)
         {
-            this.x = x;
-            this.y = y;
-            this.f = f;
+            this.X = x;
+            this.Y = y;
+            this.C = c;
         }
 
         public Point(Point p)
         {
-            x = p.x;
-            y = p.y;
-            f = p.f;
+            X = p.X;
+            Y = p.Y;
+            C = p.C;
         }
 
         public void Draw()
         {
-            Console.SetCursorPosition(this.x, this.y);
-            Console.Write(this.f);
+            Console.SetCursorPosition(this.X, this.Y);
+            Console.Write(this.C);
             Console.SetCursorPosition(0, 0);
         }
 
@@ -36,26 +36,26 @@ namespace TetrisCons
             switch (dir)
             {
                 case Directions.LEFT:
-                    x -= 1;
+                    X -= 1;
                     break;
                 case Directions.RIGHT:
-                    x += 1;
+                    X += 1;
                     break;
                 case Directions.DOWN:
-                    y += 1;
+                    Y += 1;
                     break;
             }
         }
 
         internal void Hide()
         {
-            Console.SetCursorPosition(this.x, this.y);
+            Console.SetCursorPosition(this.X, this.Y);
             Console.Write(" ");
         }
 
         public Point GetClone()
         {
-            return new Point(this.x, this.y, this.f);
+            return new Point(this.X, this.Y, this.C);
         }
     }
 }

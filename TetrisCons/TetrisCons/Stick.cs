@@ -29,8 +29,8 @@ namespace TetrisCons
         {
             for (int i = 0; i < clone.Length; i++)
             {
-                clone[i].x = clone[0].x;
-                clone[i].y += i;
+                clone[i].X = clone[0].X;
+                clone[i].Y += i;
             }
         }
 
@@ -38,8 +38,8 @@ namespace TetrisCons
         {
             for (int i = 0; i < clone.Length; i++)
             {
-                clone[i].y = clone[0].y;
-                clone[i].x += i;
+                clone[i].Y = clone[0].Y;
+                clone[i].X += i;
             }
         }
     }
