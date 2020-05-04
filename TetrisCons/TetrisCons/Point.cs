@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TetrisCons
 {
@@ -26,8 +24,8 @@ namespace TetrisCons
 
         public void Draw()
         {
-            Console.SetCursorPosition(this.X, this.Y);
-            Console.Write(this.C);
+            Console.SetCursorPosition(X, Y);
+            Console.Write(C);
             Console.SetCursorPosition(0, 0);
         }
 
@@ -49,13 +47,13 @@ namespace TetrisCons
 
         internal void Hide()
         {
-            Console.SetCursorPosition(this.X, this.Y);
+            Console.SetCursorPosition(X, Y);
             Console.Write(" ");
         }
 
         public Point GetClone()
         {
-            return new Point(this.X, this.Y, this.C);
+            return new Point(X, Y, C);
         }
     }
 }

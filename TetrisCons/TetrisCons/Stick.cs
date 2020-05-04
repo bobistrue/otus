@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TetrisCons
 {
@@ -9,17 +7,17 @@ namespace TetrisCons
         const int LENGTH = 4;
         public Stick(int x, int y, char sym)
         {
-            points = new Point[4];
-            points[0] = new Point(x, y, sym);
-            points[1] = new Point(x, y+1, sym);
-            points[2] = new Point(x, y+2, sym);
-            points[3] = new Point(x, y+3, sym);
+            Points = new Point[4];
+            Points[0] = new Point(x, y, sym);
+            Points[1] = new Point(x, y+1, sym);
+            Points[2] = new Point(x, y+2, sym);
+            Points[3] = new Point(x, y+3, sym);
             Draw();
         }
 
         public override void Rotate(Point[] clone)
         {
-            if (clone[1].x == clone[0].x)
+            if (clone[1].X == clone[0].X)
                 RotateHorizontal(clone);
             else
                 RotateVertical(clone);

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TetrisCons
 {
@@ -8,11 +6,11 @@ namespace TetrisCons
     {
         public Square(int x, int y, char c)
         {
-            points = new Point[4];
-            points[0] = new Point(x, y, c);
-            points[1] = new Point(x+1, y, c);
-            points[2] = new Point(x, y+1, c);
-            points[3] = new Point(x+1, y+1, c);
+            Points = new Point[4];
+            Points[0] = new Point(x, y, c);
+            Points[1] = new Point(x+1, y, c);
+            Points[2] = new Point(x, y+1, c);
+            Points[3] = new Point(x+1, y+1, c);
             Draw();
         }
 

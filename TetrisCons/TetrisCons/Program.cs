@@ -1,45 +1,75 @@
 ﻿using System;
 using System.Threading;
+using System.Timers;
 
 namespace TetrisCons
 {
     class Program
     {
+        static FigureGenerator generator;
+        private static System.Timers.Timer aTimer;
+
         static void Main(string[] args)
         {
+            Console.Title = "Tetris";
+            Console.SetWindowSize(GameField.Width, GameField.Height);
+            Console.SetBufferSize(GameField.Width, GameField.Height);
 
-            FigureGenerator generator = new FigureGenerator(5, 5, 'o');
+            generator = new FigureGenerator(GameField.Width / 2, 0, Drawer.DEFAULT_SYMBOL);
             Figure currentFigure = generator.GetNewFigure();
+
+            SetTimer();
 
             while (true)
             {
                 if (Console.KeyAvailable)
                 {
                     var key = Console.ReadKey();
-                    HandleKey(currentFigure, key);
+                    var result = HandleKey(currentFigure, key);
+                    ProcessResult(result, ref currentFigure);
                 }
             }
-
-            Console.ReadLine();
         }
 
-        private static void HandleKey(Figure currentFigure, ConsoleKeyInfo key)
+        private static void SetTimer()
+        {
+            aTimer = new System.Timers.Timer(2000);
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+
+        private static void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static bool ProcessResult(Result result, ref Figure currentFigure)
+        {
+            if (result == Result.HEAP_STRIKE || result == Result.DOWN_BORDER_STRIKE)
+            {
+                GameField.AddFigure(currentFigure);
+                GameField.TryDeleteLines();
+                currentFigure = generator.GetNewFigure();
+                return true;
+            }
+            return false;
+        }
+
+        private static Result HandleKey(Figure currentFigure, ConsoleKeyInfo key)
         {
             switch (key.Key)
             {
                 case ConsoleKey.LeftArrow:
-                    currentFigure.TryMove(Directions.LEFT);
-                    break;
+                    return currentFigure.TryMove(Directions.LEFT);
                 case ConsoleKey.RightArrow:
-                    currentFigure.TryMove(Directions.RIGHT);
-                    break;
+                    return currentFigure.TryMove(Directions.RIGHT);
                 case ConsoleKey.DownArrow:
-                    currentFigure.TryMove(Directions.DOWN);
-                    break;
+                    return currentFigure.TryMove(Directions.DOWN);
                 case ConsoleKey.Spacebar:
-                    currentFigure.TryRotate();
-                    break;
+                    return currentFigure.TryRotate();
             }
+            return Result.SUCCESS;
         }
 
         //static void FigureFall(out Figure fig, FigureGenerator generator)
