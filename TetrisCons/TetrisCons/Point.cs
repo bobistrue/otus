@@ -24,9 +24,7 @@ namespace TetrisCons
 
         public void Draw()
         {
-            Console.SetCursorPosition(X, Y);
-            Console.Write(C);
-            Console.SetCursorPosition(0, 0);
+            DrawerProvider.Drawer.DrawPoint(X, Y);
         }
 
         public void Move(Directions dir)
@@ -42,13 +40,15 @@ namespace TetrisCons
                 case Directions.DOWN:
                     Y += 1;
                     break;
+                case Directions.UP:
+                    Y -= 1;
+                    break;
             }
         }
 
         internal void Hide()
         {
-            Console.SetCursorPosition(X, Y);
-            Console.Write(" ");
+            DrawerProvider.Drawer.HidePoint(X, Y);
         }
 
         public Point GetClone()

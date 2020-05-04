@@ -13,35 +13,52 @@ namespace TetrisCons
                 point.Draw();
         }
 
-        public void Move(Point[] pList, Directions dir)
+        public void Move(Directions dir)
         {
-            foreach(var p in pList)
+            foreach(var p in Points)
                 p.Move(dir);
         }
 
         internal Result TryMove(Directions dir)
         {
             Hide();
-            var clone = Clone();
-            Move(clone, dir);
-            Result result = VerifyPosition(clone);
-            if (result == Result.SUCCESS)
-                Points = clone;
-            Draw();
+            Move(dir);
 
+            var result = VerifyPosition(Points);
+            if (result != Result.SUCCESS)
+                Move(Reverse(dir));
+
+            Draw();
             return result;
+        }
+
+        private Directions Reverse(Directions dir)
+        {
+            switch (dir)
+            {
+                case Directions.LEFT:
+                    return Directions.RIGHT;
+                case Directions.RIGHT:
+                    return Directions.LEFT;
+                case Directions.DOWN:
+                    return Directions.UP;
+                case Directions.UP:
+                    return Directions.DOWN;
+            }
+            return Directions.UP;
         }
 
         internal Result TryRotate()
         {
             Hide();
-            var clone = Clone();
-            Rotate(clone);
-            Result result = VerifyPosition(clone);
-            if (result == Result.SUCCESS)
-                Points = clone;
-            Draw();
+            Rotate();
 
+            var result = VerifyPosition(Points);
+
+            if (result != Result.SUCCESS)
+                Rotate();
+
+            Draw();
             return result;
         }
 
@@ -59,21 +76,13 @@ namespace TetrisCons
             return Result.SUCCESS;
         }
 
-        private Point[] Clone()
-        {
-            var newPoints = new Point[LENGTH];
-            for (int i = 0; i < LENGTH; i++)
-                newPoints[i] = Points[i].GetClone();
-            return newPoints;
-        }
-
         protected void Hide()
         {
             foreach(var point in Points)
                 point.Hide();
         }
 
-        public abstract void Rotate(Point[] clone);
+        public abstract void Rotate();
 
         internal bool IsOnTop()
         {

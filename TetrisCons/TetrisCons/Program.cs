@@ -15,11 +15,9 @@ namespace TetrisCons
 
         static void Main(string[] args)
         {
-            Console.Title = "Tetris";
-            Console.SetWindowSize(GameField.Width, GameField.Height);
-            Console.SetBufferSize(GameField.Width, GameField.Height);
+            DrawerProvider.Drawer.InitGameField();
 
-            generator = new FigureGenerator(GameField.Width / 2, 0, Drawer.DEFAULT_SYMBOL);
+            generator = new FigureGenerator(GameField.Width / 2, 0);
             currentFigure = generator.GetNewFigure();
 
             SetTimer();
@@ -61,7 +59,7 @@ namespace TetrisCons
                 GameField.TryDeleteLines();
                 if (currentFigure.IsOnTop())
                 {
-                    WriteGameOver();
+                    DrawerProvider.Drawer.WriteGameOver();
                     aTimer.Elapsed -= OnTimedEvent;
                     return true;
                 }
@@ -73,12 +71,6 @@ namespace TetrisCons
             }
             else
                 return false;
-        }
-
-        private static void WriteGameOver()
-        {
-            Console.SetCursorPosition(GameField.Width / 2 - 8, GameField.Height / 2 - 2);
-            Console.WriteLine("G A M E   O V E R");
         }
 
         private static Result HandleKey(Figure currentFigure, ConsoleKeyInfo key)

@@ -6,6 +6,7 @@ namespace TetrisCons
     {
         LEFT, 
         RIGHT, 
-        DOWN
+        DOWN,
+        UP
     }
 }

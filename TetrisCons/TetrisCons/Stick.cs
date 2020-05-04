@@ -15,12 +15,12 @@ namespace TetrisCons
             Draw();
         }
 
-        public override void Rotate(Point[] clone)
+        public override void Rotate()
         {
-            if (clone[1].X == clone[0].X)
-                RotateHorizontal(clone);
+            if (Points[1].X == Points[0].X)
+                RotateHorizontal(Points);
             else
-                RotateVertical(clone);
+                RotateVertical(Points);
         }
 
         private void RotateVertical(Point[] clone)

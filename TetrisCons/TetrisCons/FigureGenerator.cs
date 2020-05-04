@@ -8,11 +8,10 @@ namespace TetrisCons
         private char _c;
         private Random _rand = new Random();
 
-        public FigureGenerator(int x, int y, char sym)
+        public FigureGenerator(int x, int y)
         {
             _x = x;
             _y = y;
-            _c = sym;
         }
 
         public Figure GetNewFigure()
